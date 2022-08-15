@@ -47,7 +47,7 @@ class SkripsiController extends Controller
         $skripsi->users()->attach($request->tags);
         return redirect('skripsi')->with(['success' => 'Data berhasil disimpan.']);
         // dd(Auth::user()->id);
-        // dd($request);
+       
     }
 
     public function edit($id)
