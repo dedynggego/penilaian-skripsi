@@ -14,10 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('skripsi_user', function (Blueprint $table) {
-            $table->id();
-            $table->integer('skripsi_id')->unsigned();
+            // $table->integer('skripsi_id')->unsigned();
+            $table->foreignId('skripsi_id')->unsigned()->constrained()->onDelete('cascade');
             $table->integer('user_id')->unsigned();
-            $table->integer('nilai');
+            // $table->foreignId('user_id')->constrained()->onDelete('CASCADE');
+            $table->double('nilai')->default(0)->nullable();
             $table->timestamps();
         });
     }

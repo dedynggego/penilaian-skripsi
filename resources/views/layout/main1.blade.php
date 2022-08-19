@@ -15,7 +15,11 @@
     <link rel="shortcut icon" href="{{asset('/')}}dist1/img/unmus1.png" type="image/x-icon">
     <link rel="stylesheet" href="{{asset('/')}}dist/assets/vendors/simple-datatables/style.css">
     <link rel="stylesheet" href="{{asset('/')}}dist/assets/vendors/choices.js/choices.min.css" />
-</head>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+   
+    </head>
 
 <body>
     <div id="app">
@@ -130,6 +134,22 @@
     <script src="{{asset('/')}}dist/assets/js/vendors.js"></script>
     <script src="{{asset('/')}}dist/assets/vendors/choices.js/choices.min.js"></script>
     <script src="{{asset('/')}}dist/assets/js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+
+    <script>
+        $('#tanggal').datepicker({
+            uiLibrary: 'bootstrap4',
+            format: 'dd-mm-yyyy',
+        });
+    </script>
+    <script>
+        $('#jam').timepicker({
+            uiLibrary: 'bootstrap4',
+            use24hours: true,
+            // format: 'HH:mm'
+        });
+    </script>
 </body>
 
 </html>

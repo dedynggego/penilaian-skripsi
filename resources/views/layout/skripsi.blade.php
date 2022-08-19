@@ -1,7 +1,7 @@
 @extends('layout.main1')
 
 @section('judul')
-Daftar Skripsi
+List Ujian Skripsi
 @endsection
 
 @section('isi')
@@ -69,7 +69,7 @@ Daftar Skripsi
             @if (Auth::user()->id==1)
             <td>
                 <a href="{{ url('/skripsi/' . $item->id . '/edit') }}" title="Edit Data"><button class="btn icon btn-info"><i data-feather="edit"></i></button></a>
-                <br>
+                <br> &nbsp;
                 <form method="POST" action="{{ url('/skripsi' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                     {{ method_field('DELETE') }}
                     {{ csrf_field() }}

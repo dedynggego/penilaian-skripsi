@@ -24,7 +24,7 @@ class UserData extends Seeder
             'email' => 'admin@ti_unmus.ac.id',
         ],
         [
-            'name' => 'Dedy Abdianto Nggego',
+            'name' => 'Dedy Abdianto Nggego, S.SI., M.Kom',
             'nidn' => '0911099203',
             'username' => 'dedy',
             'password' => bcrypt('dedy'),

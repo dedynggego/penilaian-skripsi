@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use function PHPUnit\Framework\returnValue;
+
 class DosenController extends Controller
 {
     public function index(){
@@ -41,7 +43,36 @@ class DosenController extends Controller
         $user->password = bcrypt($request->password);
         $user->level = $request->level;
         $user->save();
-        return redirect('data-dosen');
+        return redirect('dosen')->with('success', 'Data berhasil ditambahkan');
         // dd(Auth::user()->id);
+    }
+
+    public function edit($id){
+        $dosen = User::findorfail($id);
+        $user = Auth::user();
+        return view('layout.edit_dosen')->with([
+            'dosen'=> $dosen,
+            'user'=>$user,
+        ]);
+    }
+
+    public function update(Request $request, $id){
+        $dosen = User::findorfail($id);
+
+        $dosen->name = $request->name;
+        $dosen->nidn = $request->nidn;
+        $dosen->email = $request->email;
+        $dosen->username = $request->username;
+        $dosen->level = $request->level;
+
+        $dosen->save();
+
+        return redirect('dosen')->with('success', 'Data berhasil diperbaharui');
+    }
+
+    public function destroy($id){
+        $dosen = User::findorfail($id);
+        $dosen->delete();
+        return redirect('dosen')->with('success', 'Data berhasil dihapus');
     }
 }

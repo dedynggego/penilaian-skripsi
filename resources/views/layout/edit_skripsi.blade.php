@@ -1,15 +1,16 @@
 @extends('layout.main1')
 
 @section('judul')
-Edit Data Skripsi
+
 @endsection
 
 @section('isi')
-{{$dosen}}
 <div class="card card-danger  col-5 m-auto">
+    
     <div class="card-header">
-
+        <h3><strong> Edit Data Ujian </strong></h3>
     </div>
+  
     <!-- /.card-header -->
     <!-- form start -->
     <form action="{{url('/skripsi/' . $skripsi->id)}}" method="POST">

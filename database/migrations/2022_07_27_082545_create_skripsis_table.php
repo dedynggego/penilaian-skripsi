@@ -18,10 +18,10 @@ return new class extends Migration
             $table->text('judul');
             $table->string('nama_mahasiswa');
             $table->string('npm');
-            $table->double('total_nilai');
-            $table->string('nilai_huruf',1);
-            $table->string('status');
-            $table->date('tanggal');
+            $table->double('total_nilai')->default(0)->nullable();
+            $table->string('nilai_huruf',1)->default(0)->nullable();
+            $table->string('status')->default(0)->nullable();
+            $table->string('tanggal');
             $table->time('jam');
             $table->timestamps();
 

@@ -39,6 +39,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('dosen', DosenController::class);
         Route::resource('skripsi', SkripsiController::class);
         Route::post('dosen/store', [DosenController::class, 'store'])->middleware('auth');
+        Route::put('dosen/{id}', [DosenController::class, 'update'])->middleware('auth');
+        Route::get('dosen/{id}/edit', [DosenController::class, 'edit'])->middleware('auth');
+
         Route::post('skripsi/store', [SkripsiController::class, 'store'])->middleware('auth');
         Route::get('skripsi-nilai/{id}', [SkripsiController::class, 'formPenilaian'])->middleware('auth');
         Route::put('skripsi-nilai-store/{id}', [SkripsiController::class, 'storeNilai'])->middleware('auth');
