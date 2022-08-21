@@ -18,8 +18,8 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-   
-    </head>
+
+</head>
 
 <body>
     <div id="app">
@@ -40,7 +40,7 @@
 
 
 
-                        <li class="sidebar-item active ">
+                        <li class="sidebar-item ">
                             <a href="#" class='sidebar-link'>
                                 <i data-feather="home" width="20"></i>
                                 <span>Dashboard</span>
@@ -73,6 +73,7 @@
                             </ul>
 
                         </li>
+
 
                     </ul>
                 </div>
@@ -123,6 +124,41 @@
             </footer>
         </div>
     </div>
+
+
+    <div class="modal fade text-left" id="default" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel1">Filter Tanggal</h5>
+                    <button type="button" class="close rounded-pill" data-bs-dismiss="modal" aria-label="Close">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Dari</label>
+                                <input type="text" class="form-control datepicker" id="dari" placeholder="Dari" autocomplete="off" name="dari">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Sampai</label>
+                                <input type="text" name="sampai" class="form-control datepicker" id="sampai" placeholder="Sampai" autocomplete="off">
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+
+                        <div class="box-footer">
+                            <a href="" onclick="this.href='/skripsi/cetak/'+document.getElementById('dari').value +'/' +document.getElementById('sampai').value" target="_blank", class="btn btn-info">
+                            Cetak <i data-feather="printer"></i>
+                        </a>
+                        </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="{{asset('/')}}dist/assets/js/feather-icons/feather.min.js"></script>
     <script src="{{asset('/')}}dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="{{asset('/')}}dist/assets/js/app.js"></script>
@@ -142,6 +178,14 @@
             uiLibrary: 'bootstrap4',
             format: 'dd-mm-yyyy',
         });
+        $('#dari').datepicker({
+            uiLibrary: 'bootstrap4',
+            format: 'dd-mm-yyyy',
+        });
+        $('#sampai').datepicker({
+            uiLibrary: 'bootstrap4',
+            format: 'dd-mm-yyyy',
+        });
     </script>
     <script>
         $('#jam').timepicker({
@@ -150,6 +194,7 @@
             // format: 'HH:mm'
         });
     </script>
+
 </body>
 
 </html>

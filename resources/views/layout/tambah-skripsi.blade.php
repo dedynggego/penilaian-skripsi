@@ -18,7 +18,7 @@
 
             <h6>Nama Mahasiswa</h6>
             <div class="form-group position-relative has-icon-right">
-                <input type="text" class="form-control" id="name" placeholder="Masukkan Nama" , name="name">
+                <input type="text" class="form-control" id="name" placeholder="Masukkan Nama" , name="name" autocomplete="off" autofocus>
                 <div class="form-control-icon">
                     <i data-feather="user"></i>
                 </div>

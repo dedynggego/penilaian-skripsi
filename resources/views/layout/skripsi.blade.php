@@ -6,12 +6,18 @@ List Ujian Skripsi
 
 @section('isi')
 @if ($message = Session::get('success'))
-<div class="alert alert-light-success color-success"><i data-feather="star"></i> {{$message}}</div>
+<div class="alert alert-light-success color-dark"><i data-feather="star"></i> {{$message}}</div>
+@endif
+@if ($message = Session::get('error'))
+<div class="alert alert-light-danger color-danger"><i data-feather="x-octagon"></i> {{$message}}</div>
 @endif
 
 @if (Auth::user()->id == 1)
 <a href="{{ url('skripsi/create') }}" class="btn btn-success btn-sm" title="Tambah Data Skripsi">
     <i data-feather="plus-circle"></i> Tambah Data
+</a>
+<a href="#" class="btn btn-info btn-sm" title="Tambah Data Skripsi" data-bs-toggle="modal" data-bs-target="#default">
+    <i data-feather="printer"></i> Export PDF
 </a>
 <br />
 <br />
@@ -82,8 +88,5 @@ List Ujian Skripsi
         @endforeach
     </tbody>
 </table>
-
-
-
 
 @endsection

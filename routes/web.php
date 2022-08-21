@@ -48,7 +48,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('skripsi/{id}/edit', [SkripsiController::class, 'edit'])->middleware('auth');
         Route::get('skripsi/{id}', [SkripsiController::class, 'destroy'])->middleware('auth');
         Route::put('skripsi/{id}', [SkripsiController::class, 'update'])->middleware('auth');
+        Route::get('skripsi/cetak/{dari}/{sampai}', [SkripsiController::class, 'cetak'])->middleware('auth');
         
+
     });
 
     Route::group(['middleware' => ['cekUserLogin:2,1']], function () {

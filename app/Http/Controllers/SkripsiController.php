@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Skripsi;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+
+use Barryvdh\DomPDF\Facade\Pdf;
+use Exception;
 
 class SkripsiController extends Controller
 {
@@ -47,7 +51,7 @@ class SkripsiController extends Controller
         $skripsi->users()->attach($request->tags);
         return redirect('skripsi')->with(['success' => 'Data berhasil disimpan.']);
         // dd(Auth::user()->id);
-       
+
     }
 
     public function edit($id)
@@ -65,29 +69,37 @@ class SkripsiController extends Controller
 
     public function update(Request $request, $id)
     {
+        try {
+            //code...
+            $skripsi = Skripsi::findOrFail($id);
+            $skripsi->nama_mahasiswa = $request->name;
+            $skripsi->npm = $request->npm;
+            $skripsi->judul = $request->judul;
+            $skripsi->tanggal = $request->tanggal;
+            $skripsi->jam = $request->jam;
+            $skripsi->total_nilai = 0;
+            $skripsi->nilai_huruf = 0;
+            $skripsi->status = 0;
 
-        $skripsi = Skripsi::findOrFail($id);
-        $skripsi->nama_mahasiswa = $request->name;
-        $skripsi->npm = $request->npm;
-        $skripsi->judul = $request->judul;
-        $skripsi->tanggal = $request->tanggal;
-        $skripsi->jam = $request->jam;
-        $skripsi->total_nilai = 0;
-        $skripsi->nilai_huruf = 0;
-        $skripsi->status = 0;
-
-        $skripsi->users()->sync(
-            [
-                $skripsi->id =>
-                ['user_id' => $request->tags[0]], // Masukkan 5 Dosen
-                ['user_id' => $request->tags[1]],
-                ['user_id' => $request->tags[2]],
-            ]
-        );
-
-
-        $skripsi->save();
-        return redirect('skripsi')->with('success', 'Data berhasil diperbaharui');
+            if (count($request->tags) < 5) {
+                return redirect('skripsi')->with('error', 'Gagal, Dosen penilai harus berjumlah 5 orang');
+            } else {
+                $skripsi->users()->sync(
+                    [
+                        $skripsi->id =>
+                        ['user_id' => $request->tags[0]], // Masukkan 5 Dosen
+                        ['user_id' => $request->tags[1]],
+                        ['user_id' => $request->tags[2]],
+                        ['user_id' => $request->tags[3]],
+                        ['user_id' => $request->tags[4]],
+                    ]
+                );
+                $skripsi->save();
+                return redirect('skripsi')->with('success', 'Data berhasil diperbaharui');
+            }
+        } catch (\Exception $e) {
+            report($e);
+        }
     }
 
     public function destroy($id)
@@ -137,13 +149,13 @@ class SkripsiController extends Controller
 
         $nilai_baru = $nilai + $total_nilai;
 
-        if ($status == 2) { //jika status == 4
-            $nilai_baru = $nilai_baru / 3; //Bagi dengan 5
-            if ($nilai_baru > 9) { //Perbaiki grade nilai
+        if ($status == 4) { //jika status == 4
+            $nilai_baru = $nilai_baru / 5; //Bagi dengan 5
+            if ($nilai_baru > 90) { //Perbaiki grade nilai
                 $skripsi->nilai_huruf = 'A';
-            } elseif ($nilai_baru > 8) {
+            } elseif ($nilai_baru >= 80) {
                 $skripsi->nilai_huruf = 'B';
-            } elseif ($nilai_baru > 7) {
+            } elseif ($nilai_baru >= 70) {
                 $skripsi->nilai_huruf = 'C';
             } else {
                 $skripsi->nilai_huruf = 'D';
@@ -159,5 +171,18 @@ class SkripsiController extends Controller
         }
 
         return redirect('skripsi')->with('success', 'Berhasil memberikan nilai');
+    }
+
+    public function cetak($dari, $sampai)
+    {
+        // dd($dari, $sampai);
+        $cetak = Skripsi::whereBetween('tanggal', [$dari, $sampai])->get();
+
+        $tgl_dari = $dari;
+        $tgl_sampai = $sampai;
+        $nama = 'Laporan ' . $tgl_dari . '-' . $tgl_sampai . '.pdf';
+
+        $pdf = Pdf::loadView('layout.cetak_skripsi', compact('cetak', 'tgl_dari', 'tgl_sampai'))->setPaper('a4', 'landscape');;
+        return $pdf->download($nama);
     }
 }
