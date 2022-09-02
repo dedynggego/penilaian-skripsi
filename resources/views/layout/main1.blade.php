@@ -16,9 +16,11 @@
     <link rel="stylesheet" href="{{asset('/')}}dist/assets/vendors/simple-datatables/style.css">
     <link rel="stylesheet" href="{{asset('/')}}dist/assets/vendors/choices.js/choices.min.css" />
 
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 
+    <link href="{{asset('/')}}dist1/css/dash.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -39,13 +41,15 @@
                         <li class='sidebar-title'>Main Menu</li>
 
 
-
-                        <li class="sidebar-item ">
-                            <a href="#" class='sidebar-link'>
+                        @if ($user->level != 3)
+                        <li class="{{ (request()->is('dashboard')) ? 'sidebar-item active' : 'sidebar-item' }} ">
+                            <a href="{{url ('dashboard')}}" class='sidebar-link'>
                                 <i data-feather="home" width="20"></i>
                                 <span>Dashboard</span>
                             </a>
-                        </li>
+                        </li>                            
+                        @endif
+                        
 
 
 
@@ -61,12 +65,17 @@
                                 <i data-feather="file-text" width="20"></i>
                                 <span>Penilaian</span>
                             </a>
+                            @else
+                            <a href="#" class='sidebar-link'>
+                                <i data-feather="file-text" width="20"></i>
+                                <span>Nilai</span>
+                            </a>
                             @endif
 
 
 
 
-                            <ul class="submenu ">
+                            <ul class="submenu active">
 
                                 @include('layout.menu')
 
@@ -98,6 +107,8 @@
                             <div class="dropdown-menu dropdown-menu-end">
                                 <a class="dropdown-item" href="{{url('logout')}}"><i data-feather="log-out"></i> Logout</a>
                             </div>
+                           
+                            
                         </li>
                     </ul>
                 </div>
@@ -105,7 +116,7 @@
 
             <div class="main-content container-fluid">
                 <div class="page-title">
-                    <h3>@yield('judul')</h3>
+                    <h3 style="color: black;"><strong>@yield('judul')</strong></h3>
                 </div>
                 <section class="section">
                     @yield('isi')
@@ -127,7 +138,7 @@
 
 
     <div class="modal fade text-left" id="default" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable" role="document">
+        <div class="modal-dialog modal-lg role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="myModalLabel1">Filter Tanggal</h5>
@@ -138,11 +149,11 @@
                 <div class="modal-body">
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Dari</label>
+                                <label>Dari Tanggal</label>
                                 <input type="text" class="form-control datepicker" id="dari" placeholder="Dari" autocomplete="off" name="dari">
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Sampai</label>
+                                <label>Sampai Tanggal</label>
                                 <input type="text" name="sampai" class="form-control datepicker" id="sampai" placeholder="Sampai" autocomplete="off">
                             </div>
                         </div>
@@ -172,6 +183,7 @@
     <script src="{{asset('/')}}dist/assets/js/main.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+
 
     <script>
         $('#tanggal').datepicker({

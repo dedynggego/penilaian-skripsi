@@ -28,17 +28,17 @@
     </table>
     <br>
 
-    <table class="table" style="width:100%">
+    <table class="table w-auto small table-bordered" style="width:100%">
         <thead>
             <tr>
                 <!-- <th>No</th> -->
                 <th>Tanggal</th>
-                <th>Nama</th>
-                <th>NPM</th>
-                <th>Judul</th>
-                <th>Total Nilai</th>
-                <th>Nilai Huruf</th>
-                <th>Dosen Penilai</th>
+                <th style="text-align: center;">Nama</th>
+                <th style="text-align: center;">NPM</th>
+                <th style="text-align: center;">Judul</th>
+                <th style="text-align: center;">Total Nilai</th>
+                <th style="text-align: center;">Nilai Huruf</th>
+                <th style="text-align: center;">Dosen Penilai</th>
 
 
             </tr>
@@ -48,17 +48,17 @@
             @foreach ($cetak as $item )
             <tr>
                 <!-- <td>{{$loop->iteration}}</td> -->
-                <td>{{$item->tanggal}}</td>
+                <td>{{\Carbon\Carbon::parse($item->tanggal)->format('d-m-Y')}}</td>
                 <td>{{$item-> nama_mahasiswa}}</td>
                 <td>{{$item->npm}}</td>
                 <td>{{$item->judul}}</td>
-                <td>@if ($item->total_nilai==0)
+                <td style="text-align: center;">@if ($item->nilai_huruf==0)
                     Belum dinilai
                     @else
-                    {{$item->total_nilai}}
+                    {{number_format($item->total_nilai, 2, '.', '')}}
                     @endif
                 </td>
-                <td>@if ($item->nilai_huruf==0)
+                <td style="text-align: center;">@if ($item->nilai_huruf==0)
                     Belum dinilai
                     @else
                     {{$item->nilai_huruf}}
@@ -66,10 +66,7 @@
                 </td>
                 <td>
                     @foreach ($item->users as $i)
-                    <ul>
-                        <span> {{$loop->iteration}}. {{$i->name}}</span>
-                    </ul>
-
+                        <span> {{$loop->iteration}}. {{$i->name}}</span><br>
                     @endforeach
                 </td>
             </tr>
@@ -78,10 +75,10 @@
         </tbody>
     </table>
     <br>
-    <table>
+    <table class="w-auto small">
         <thead>
             <tr>
-                <th style="width: 60%;"> Merauke ......................... 2022 <strong> <br>Ketua Sidang, <br> <br><br><br>(.......................................................) </strong></th>
+                <th style="width: 60%;"> Merauke ......................... 2022 <strong> <br>Ketua Sidang, <br> <br><br><br><br>(........................................................................) </strong></th>
             </tr>
         </thead>
     </table>

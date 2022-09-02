@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 
 use Barryvdh\DomPDF\Facade\Pdf;
 use Exception;
+use Illuminate\Support\Carbon;
+use PhpParser\Node\Stmt\TryCatch;
 
 class SkripsiController extends Controller
 {
@@ -42,10 +44,11 @@ class SkripsiController extends Controller
     public function store(Request $request)
     {
         $skripsi = new Skripsi;
+        $tgl = Carbon::parse($request->tanggal)->format('Y-m-d');
         $skripsi->nama_mahasiswa = $request->name;
         $skripsi->npm = $request->npm;
         $skripsi->judul = $request->judul;
-        $skripsi->tanggal = $request->tanggal;
+        $skripsi->tanggal = $tgl;
         $skripsi->jam = $request->jam;
         $skripsi->save();
         $skripsi->users()->attach($request->tags);
@@ -69,36 +72,34 @@ class SkripsiController extends Controller
 
     public function update(Request $request, $id)
     {
-        try {
-            //code...
-            $skripsi = Skripsi::findOrFail($id);
-            $skripsi->nama_mahasiswa = $request->name;
-            $skripsi->npm = $request->npm;
-            $skripsi->judul = $request->judul;
-            $skripsi->tanggal = $request->tanggal;
-            $skripsi->jam = $request->jam;
-            $skripsi->total_nilai = 0;
-            $skripsi->nilai_huruf = 0;
-            $skripsi->status = 0;
 
-            if (count($request->tags) < 5) {
-                return redirect('skripsi')->with('error', 'Gagal, Dosen penilai harus berjumlah 5 orang');
-            } else {
-                $skripsi->users()->sync(
-                    [
-                        $skripsi->id =>
-                        ['user_id' => $request->tags[0]], // Masukkan 5 Dosen
-                        ['user_id' => $request->tags[1]],
-                        ['user_id' => $request->tags[2]],
-                        ['user_id' => $request->tags[3]],
-                        ['user_id' => $request->tags[4]],
-                    ]
-                );
-                $skripsi->save();
-                return redirect('skripsi')->with('success', 'Data berhasil diperbaharui');
-            }
-        } catch (\Exception $e) {
-            report($e);
+        //code...
+        $skripsi = Skripsi::findOrFail($id);
+        $tgl = Carbon::parse($request->tanggal)->format('Y-m-d');
+        $skripsi->nama_mahasiswa = $request->name;
+        $skripsi->npm = $request->npm;
+        $skripsi->judul = $request->judul;
+        $skripsi->tanggal = $tgl;
+        $skripsi->jam = $request->jam;
+        $skripsi->total_nilai = 0;
+        $skripsi->nilai_huruf = 0;
+        $skripsi->status = 0;
+
+        if (count($request->tags) < 5) {
+            return redirect('skripsi')->with('error', 'Gagal, Dosen penilai harus berjumlah 5 orang');
+        } else {
+            $skripsi->users()->sync(
+                [
+                    $skripsi->id =>
+                    ['user_id' => $request->tags[0]], // Masukkan 5 Dosen
+                    ['user_id' => $request->tags[1]],
+                    ['user_id' => $request->tags[2]],
+                    ['user_id' => $request->tags[3]],
+                    ['user_id' => $request->tags[4]],
+                ]
+            );
+            $skripsi->save();
+            return redirect('skripsi')->with('success', 'Data berhasil diperbaharui');
         }
     }
 
@@ -106,7 +107,7 @@ class SkripsiController extends Controller
     {
         $skripsi = Skripsi::find($id);
         $skripsi->delete();
-        return redirect('skripsi');
+        return redirect('skripsi')->with('success', 'Data berhasil dihapus.');
     }
 
     public function formPenilaian($id)
@@ -139,50 +140,116 @@ class SkripsiController extends Controller
         $total_nilai = $sistematika_penyusunan + $teknik_pembuatan + $jumlah_materi + $mutu_materi + $sikap + $penguasaan_materi + $peralatan_a;
 
         // TERBARU
-        $skripsi->users()->updateExistingPivot(
+        try {
+            //code...
+            $skripsi->users()->updateExistingPivot(
 
-            $user->id,
-            [
-                'nilai' => $total_nilai,
-            ]
-        );
+                $user->id,
+                [
+                    'nilai' => $total_nilai,
+                ]
+            );
 
-        $nilai_baru = $nilai + $total_nilai;
+            $nilai_baru = $nilai + $total_nilai;
 
-        if ($status == 4) { //jika status == 4
-            $nilai_baru = $nilai_baru / 5; //Bagi dengan 5
-            if ($nilai_baru > 90) { //Perbaiki grade nilai
-                $skripsi->nilai_huruf = 'A';
-            } elseif ($nilai_baru >= 80) {
-                $skripsi->nilai_huruf = 'B';
-            } elseif ($nilai_baru >= 70) {
-                $skripsi->nilai_huruf = 'C';
+            // if ($status == 2) {
+            //     $nilai_baru = $nilai_baru / 3; //Bagi dengan 5
+            //     if ($nilai_baru > 90) { //Perbaiki grade nilai
+            //         $skripsi->nilai_huruf = 'A';
+            //     } elseif ($nilai_baru >= 80) {
+            //         $skripsi->nilai_huruf = 'B';
+            //     } elseif ($nilai_baru >= 70) {
+            //         $skripsi->nilai_huruf = 'C';
+            //     } else {
+            //         $skripsi->nilai_huruf = 'D';
+            //     }
+
+            //     $skripsi->total_nilai = $nilai_baru;
+            //     $skripsi->status = $status + 1;
+            //     $skripsi->save();
+            // } elseif($status == 3){
+            //     $nilai_baru = $nilai_baru / 4; //Bagi dengan 5
+            //     if ($nilai_baru > 90) { //Perbaiki grade nilai
+            //         $skripsi->nilai_huruf = 'A';
+            //     } elseif ($nilai_baru >= 80) {
+            //         $skripsi->nilai_huruf = 'B';
+            //     } elseif ($nilai_baru >= 70) {
+            //         $skripsi->nilai_huruf = 'C';
+            //     } else {
+            //         $skripsi->nilai_huruf = 'D';
+            //     }
+
+            //     $skripsi->total_nilai = $nilai_baru;
+            //     $skripsi->status = $status + 1;
+            //     $skripsi->save();
+            // }
+            if ($status == 4) { //jika status == 4
+                $nilai_baru = $nilai_baru / 5; //Bagi dengan 5
+                if ($nilai_baru >= 80) { //Perbaiki grade nilai
+                    $skripsi->nilai_huruf = 'A';
+                } elseif ($nilai_baru >= 70) {
+                    $skripsi->nilai_huruf = 'B';
+                } elseif ($nilai_baru >= 60) {
+                    $skripsi->nilai_huruf = 'C';
+                } else {
+                    $skripsi->nilai_huruf = 'E';
+                }
+
+                $skripsi->total_nilai = $nilai_baru;
+                $skripsi->status = $status + 1;
+                $skripsi->save();
             } else {
-                $skripsi->nilai_huruf = 'D';
+                $skripsi->total_nilai = $nilai_baru;
+                $skripsi->status = $status + 1;
+                $skripsi->save();
             }
 
-            $skripsi->total_nilai = $nilai_baru;
-            $skripsi->status = $status + 1;
-            $skripsi->save();
-        } else {
-            $skripsi->total_nilai = $nilai_baru;
-            $skripsi->status = $status + 1;
-            $skripsi->save();
+            return redirect('skripsi')->with([
+                'success', 'Berhasil memberikan nilai'
+            ]);
+        } catch (\Throwable $th) {
+            return redirect('skripsi-nilai/' . $id)->with([
+                'error', 'Berhasil memberikan nilai'
+            ]);
         }
-
-        return redirect('skripsi')->with('success', 'Berhasil memberikan nilai');
     }
 
     public function cetak($dari, $sampai)
     {
         // dd($dari, $sampai);
-        $cetak = Skripsi::whereBetween('tanggal', [$dari, $sampai])->get();
+        $cetak = Skripsi::whereBetween('tanggal', [Carbon::parse($dari)->format('Y-m-d'), Carbon::parse($sampai)->format('Y-m-d')])->get();
 
         $tgl_dari = $dari;
         $tgl_sampai = $sampai;
         $nama = 'Laporan ' . $tgl_dari . '-' . $tgl_sampai . '.pdf';
 
-        $pdf = Pdf::loadView('layout.cetak_skripsi', compact('cetak', 'tgl_dari', 'tgl_sampai'))->setPaper('a4', 'landscape');;
+        $pdf = Pdf::loadView('layout.cetak_skripsi', compact('cetak', 'tgl_dari', 'tgl_sampai'))->setPaper('a4', 'landscape');
         return $pdf->download($nama);
+    }
+
+    public function detail($id)
+    {
+        $user = Auth::user();
+        $skripsi = Skripsi::with('users')->findOrFail($id);
+        $detail = Skripsi::where('id', $id)->get();
+        // $dosen = User::get(['id', 'name']);
+
+        // dd($skripsi);
+        return view('layout.detail_penilaian')->with([
+            'user' => $user,
+            'skripsi' => $skripsi,
+            'detail' => $detail,
+            // 'dosen'=>$dosen,
+        ]);
+    }
+
+    public function cetakDetail($id)
+    {
+        $skripsi = Skripsi::with('users')->findOrFail($id);
+        $detail = Skripsi::where('id', $id)->get();
+
+        $nama = 'Laporan Detail.pdf';
+        $pdf = Pdf::loadView('layout.cetak_detail', compact('skripsi', 'detail'))->setPaper('a4', 'potrait');
+        return $pdf->stream();
     }
 }

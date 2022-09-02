@@ -49,25 +49,29 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('skripsi/{id}', [SkripsiController::class, 'destroy'])->middleware('auth');
         Route::put('skripsi/{id}', [SkripsiController::class, 'update'])->middleware('auth');
         Route::get('skripsi/cetak/{dari}/{sampai}', [SkripsiController::class, 'cetak'])->middleware('auth');
-        
+        Route::get('dashboard', [LayoutController::class, 'dashboard'])->middleware('auth');
+        Route::get('skripsi/detail/{id}', [SkripsiController::class, 'cetakDetail'])->middleware('auth');
 
     });
 
     Route::group(['middleware' => ['cekUserLogin:2,1']], function () {
-        Route::get('skripsi/create', [SkripsiController::class, 'create'])->middleware('auth'); 
+        // Route::get('skripsi/create', [SkripsiController::class, 'create'])->middleware('auth'); 
         Route::get('skripsi', [SkripsiController::class, 'index'])->middleware('auth');
         Route::get('skripsi-nilai/{id}', [SkripsiController::class, 'formPenilaian'])->middleware('auth');
         Route::put('skripsi-nilai-store/{id}', [SkripsiController::class, 'storeNilai'])->middleware('auth');
+        Route::get('dashboard', [LayoutController::class, 'dashboard'])->middleware('auth');
+        Route::get('detail/{id}', [SkripsiController::class, 'detail'])->middleware('auth');
+
 
 
     });
 
     Route::group(['middleware' => ['cekUserLogin:3,2,1']], function () {
          
-        Route::get('skripsi', [SkripsiController::class, 'index'])->middleware('auth');
-        Route::get('skripsi-nilai/{id}', [SkripsiController::class, 'formPenilaian'])->middleware('auth');
-        Route::put('skripsi-nilai-store/{id}', [SkripsiController::class, 'storeNilai'])->middleware('auth');
-
+        // Route::get('skripsi', [SkripsiController::class, 'index'])->middleware('auth');
+        // Route::get('skripsi-nilai/{id}', [SkripsiController::class, 'formPenilaian'])->middleware('auth');
+        // Route::put('skripsi-nilai-store/{id}', [SkripsiController::class, 'storeNilai'])->middleware('auth');
+        Route::get('dashboard', [LayoutController::class, 'dashboard'])->middleware('auth');
 
     });
 });

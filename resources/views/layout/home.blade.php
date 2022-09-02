@@ -1,30 +1,17 @@
 @extends('layout.main1')
 
 @section('judul')
-    Halaman Home
+    SISTEM PENILAIAN SKRIPSI
 @endsection
 
 @section('isi')
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Selamat datang, {{ $user->username}}.</h3>
-
-        <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                <i class="fas fa-minus"></i>
-            </button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
+       <h3 class="card-title" style="color: black; font-weight: 800;">Hai, {{ $user->name}}.</h3>
     </div>
     <div class="card-body">
-        Start creating your amazing application!
+        <marquee>
+    <h3 class="card-title" style="color: black;"><br>Selamat datang di Sistem Penilaian Skripsi Jurusan Teknik Informatika Universitas Musamus.</h3></marquee>
     </div>
-    <!-- /.card-body -->
-    <!-- <div class="card-footer">
-        Footer
-    </div> -->
-    <!-- /.card-footer-->
 </div>
 @endsection

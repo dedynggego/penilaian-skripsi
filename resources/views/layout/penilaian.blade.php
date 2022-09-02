@@ -5,19 +5,22 @@ Form Penilaian
 @endsection
 
 @section('isi')
+@if ($message = Session::get('error'))
+<div class="alert alert-light-danger color-danger"><i data-feather="x-octagon"></i> {{$message}}</div>
+@endif
 <table class="table">
     <tbody>
         <tr>
             <td>Nama Mahasiswa</td>
-            <th scope="row">{{$skripsi->nama_mahasiswa}}</th>
+            <th scope="row" style="color: black;">{{$skripsi->nama_mahasiswa}}</th>
         </tr>
         <tr>
             <td>NPM</td>
-            <th scope="row">{{$skripsi->npm}}</th>
+            <th scope="row" style="color: black">{{$skripsi->npm}}</th>
         </tr>
         <tr>
             <td>Judul</td>
-            <th scope="row">{{$skripsi->judul}}</th>
+            <th scope="row" style="color: black">{{$skripsi->judul}}</th>
 
         </tr>
     </tbody>
@@ -46,8 +49,8 @@ Form Penilaian
 
                                     <ul class="list-unstyled mb-0">
                                         <li class="d-inline-block me-2 mb-1">
-                                            <div class="form-check form-check-warning ">
-                                                <input class="form-check-input" type="radio" name="a1" id="radioDanger1" value=1>
+                                            <div class="form-check form-check-warning">
+                                                <input class="form-check-input" type="radio" name="a1" id="radioDanger1" value=1 required>
                                                 <label class="form-check-label" for="Danger">1
                                                 </label>
                                             </div>
@@ -84,7 +87,7 @@ Form Penilaian
                                     <ul class="list-unstyled mb-0">
                                         <li class="d-inline-block me-2 mb-1">
                                             <div class="form-check form-check-warning ">
-                                                <input class="form-check-input" type="radio" name="b1" id="radioDanger1" value=1>
+                                                <input class="form-check-input" type="radio" name="b1" id="radioDanger1" value=1 required>
                                                 <label class="form-check-label" for="Danger">1
                                                 </label>
                                             </div>
@@ -121,7 +124,7 @@ Form Penilaian
                                     <ul class="list-unstyled mb-0">
                                         <li class="d-inline-block me-2 mb-1">
                                             <div class="form-check form-check-warning ">
-                                                <input class="form-check-input" type="radio" name="c1" id="radioDanger1" value="1">
+                                                <input class="form-check-input" type="radio" name="c1" id="radioDanger1" value="1" required>
                                                 <label class="form-check-label" for="Danger">1
                                                 </label>
                                             </div>
@@ -158,7 +161,7 @@ Form Penilaian
                                     <ul class="list-unstyled mb-0">
                                         <li class="d-inline-block me-2 mb-1">
                                             <div class="form-check form-check-warning ">
-                                                <input class="form-check-input" type="radio" name="d1" id="radioDanger1" value="1">
+                                                <input class="form-check-input" type="radio" name="d1" id="radioDanger1" value="1" required>
                                                 <label class="form-check-label" for="Danger">1
                                                 </label>
                                             </div>
@@ -207,7 +210,7 @@ Form Penilaian
                                     <ul class="list-unstyled mb-0">
                                         <li class="d-inline-block me-2 mb-1">
                                             <div class="form-check form-check-warning ">
-                                                <input class="form-check-input" type="radio" name="a2" id="radioDanger1" value="1">
+                                                <input class="form-check-input" type="radio" name="a2" id="radioDanger1" value="1" required>
                                                 <label class="form-check-label" for="Danger">1
                                                 </label>
                                             </div>
@@ -243,7 +246,7 @@ Form Penilaian
                                     <ul class="list-unstyled mb-0">
                                         <li class="d-inline-block me-2 mb-1">
                                             <div class="form-check form-check-warning ">
-                                                <input class="form-check-input" type="radio" name="b2" id="radioDanger1" value="1">
+                                                <input class="form-check-input" type="radio" name="b2" id="radioDanger1" value="1" required>
                                                 <label class="form-check-label" for="Danger">1
                                                 </label>
                                             </div>
@@ -292,7 +295,7 @@ Form Penilaian
                                     <ul class="list-unstyled mb-0">
                                         <li class="d-inline-block me-2 mb-1">
                                             <div class="form-check form-check-warning ">
-                                                <input class="form-check-input" type="radio" name="a3" id="radioDanger1" value="1">
+                                                <input class="form-check-input" type="radio" name="a3" id="radioDanger1" value="1" required>
                                                 <label class="form-check-label" for="Danger">1
                                                 </label>
                                             </div>
@@ -329,7 +332,7 @@ Form Penilaian
                                     <ul class="list-unstyled mb-0">
                                         <li class="d-inline-block me-2 mb-1">
                                             <div class="form-check form-check-warning ">
-                                                <input class="form-check-input" type="radio" name="b3" id="radioDanger1" value="1">
+                                                <input class="form-check-input" type="radio" name="b3" id="radioDanger1" value="1" required>
                                                 <label class="form-check-label" for="Danger">1
                                                 </label>
                                             </div>
@@ -378,7 +381,7 @@ Form Penilaian
                                     <ul class="list-unstyled mb-0">
                                         <li class="d-inline-block me-2 mb-1">
                                             <div class="form-check form-check-warning ">
-                                                <input class="form-check-input" type="radio" name="a4" id="radioDanger1" value="1">
+                                                <input class="form-check-input" type="radio" name="a4" id="radioDanger1" value="1" required>
                                                 <label class="form-check-label" for="Danger">1
                                                 </label>
                                             </div>
@@ -415,7 +418,7 @@ Form Penilaian
                                     <ul class="list-unstyled mb-0">
                                         <li class="d-inline-block me-2 mb-1">
                                             <div class="form-check form-check-warning ">
-                                                <input class="form-check-input" type="radio" name="b4" id="radioDanger1" value="1">
+                                                <input class="form-check-input" type="radio" name="b4" id="radioDanger1" value="1" required>
                                                 <label class="form-check-label" for="Danger">1
                                                 </label>
                                             </div>
@@ -452,7 +455,7 @@ Form Penilaian
                                     <ul class="list-unstyled mb-0">
                                         <li class="d-inline-block me-2 mb-1">
                                             <div class="form-check form-check-warning ">
-                                                <input class="form-check-input" type="radio" name="c4" id="radioDanger1" value="1">
+                                                <input class="form-check-input" type="radio" name="c4" id="radioDanger1" value="1" required>
                                                 <label class="form-check-label" for="Danger">1
                                                 </label>
                                             </div>
@@ -489,7 +492,7 @@ Form Penilaian
                                     <ul class="list-unstyled mb-0">
                                         <li class="d-inline-block me-2 mb-1">
                                             <div class="form-check form-check-warning ">
-                                                <input class="form-check-input" type="radio" name="d4" id="radioDanger1" value="1">
+                                                <input class="form-check-input" type="radio" name="d4" id="radioDanger1" value="1" required>
                                                 <label class="form-check-label" for="Danger">1
                                                 </label>
                                             </div>
@@ -526,7 +529,7 @@ Form Penilaian
                                     <ul class="list-unstyled mb-0">
                                         <li class="d-inline-block me-2 mb-1">
                                             <div class="form-check form-check-warning ">
-                                                <input class="form-check-input" type="radio" name="e4" id="radioDanger1" value="1">
+                                                <input class="form-check-input" type="radio" name="e4" id="radioDanger1" value="1" required>
                                                 <label class="form-check-label" for="Danger">1
                                                 </label>
                                             </div>
@@ -563,7 +566,7 @@ Form Penilaian
                                     <ul class="list-unstyled mb-0">
                                         <li class="d-inline-block me-2 mb-1">
                                             <div class="form-check form-check-warning ">
-                                                <input class="form-check-input" type="radio" name="f4" id="radioDanger1" value="1">
+                                                <input class="form-check-input" type="radio" name="f4" id="radioDanger1" value="1" required>
                                                 <label class="form-check-label" for="Danger">1
                                                 </label>
                                             </div>
@@ -600,7 +603,7 @@ Form Penilaian
                                     <ul class="list-unstyled mb-0">
                                         <li class="d-inline-block me-2 mb-1">
                                             <div class="form-check form-check-warning ">
-                                                <input class="form-check-input" type="radio" name="g4" id="radioDanger1" value="1">
+                                                <input class="form-check-input" type="radio" name="g4" id="radioDanger1" value="1" required>
                                                 <label class="form-check-label" for="Danger">1
                                                 </label>
                                             </div>
@@ -650,7 +653,7 @@ Form Penilaian
                                     <ul class="list-unstyled mb-0">
                                         <li class="d-inline-block me-2 mb-1">
                                             <div class="form-check form-check-warning ">
-                                                <input class="form-check-input" type="radio" name="a5" id="radioDanger1" value="1">
+                                                <input class="form-check-input" type="radio" name="a5" id="radioDanger1" value="1" required>
                                                 <label class="form-check-label" for="Danger">1
                                                 </label>
                                             </div>
@@ -687,7 +690,7 @@ Form Penilaian
                                     <ul class="list-unstyled mb-0">
                                         <li class="d-inline-block me-2 mb-1">
                                             <div class="form-check form-check-warning ">
-                                                <input class="form-check-input" type="radio" name="b5" id="radioDanger1" value="1">
+                                                <input class="form-check-input" type="radio" name="b5" id="radioDanger1" value="1" required>
                                                 <label class="form-check-label" for="Danger">1
                                                 </label>
                                             </div>
@@ -724,7 +727,7 @@ Form Penilaian
                                     <ul class="list-unstyled mb-0">
                                         <li class="d-inline-block me-2 mb-1">
                                             <div class="form-check form-check-warning ">
-                                                <input class="form-check-input" type="radio" name="c5" id="radioDanger1" value="1">
+                                                <input class="form-check-input" type="radio" name="c5" id="radioDanger1" value="1" required>
                                                 <label class="form-check-label" for="Danger">1
                                                 </label>
                                             </div>
@@ -761,7 +764,7 @@ Form Penilaian
                                     <ul class="list-unstyled mb-0">
                                         <li class="d-inline-block me-2 mb-1">
                                             <div class="form-check form-check-warning ">
-                                                <input class="form-check-input" type="radio" name="d5" id="radioDanger1" value="1">
+                                                <input class="form-check-input" type="radio" name="d5" id="radioDanger1" value="1" required>
                                                 <label class="form-check-label" for="Danger">1
                                                 </label>
                                             </div>
@@ -798,7 +801,7 @@ Form Penilaian
                                     <ul class="list-unstyled mb-0">
                                         <li class="d-inline-block me-2 mb-1">
                                             <div class="form-check form-check-warning ">
-                                                <input class="form-check-input" type="radio" name="e5" id="radioDanger1" value="1">
+                                                <input class="form-check-input" type="radio" name="e5" id="radioDanger1" value="1" required>
                                                 <label class="form-check-label" for="Danger">1
                                                 </label>
                                             </div>
@@ -835,7 +838,7 @@ Form Penilaian
                                     <ul class="list-unstyled mb-0">
                                         <li class="d-inline-block me-2 mb-1">
                                             <div class="form-check form-check-warning ">
-                                                <input class="form-check-input" type="radio" name="f5" id="radioDanger1" value="1">
+                                                <input class="form-check-input" type="radio" name="f5" id="radioDanger1" value="1" required>
                                                 <label class="form-check-label" for="Danger">1
                                                 </label>
                                             </div>
@@ -886,7 +889,7 @@ Form Penilaian
                                     <ul class="list-unstyled mb-0">
                                         <li class="d-inline-block me-2 mb-1">
                                             <div class="form-check form-check-warning ">
-                                                <input class="form-check-input" type="radio" name="a6" id="radioDanger1" value="1">
+                                                <input class="form-check-input" type="radio" name="a6" id="radioDanger1" value="1" required>
                                                 <label class="form-check-label" for="Danger">1
                                                 </label>
                                             </div>
@@ -923,7 +926,7 @@ Form Penilaian
                                     <ul class="list-unstyled mb-0">
                                         <li class="d-inline-block me-2 mb-1">
                                             <div class="form-check form-check-warning ">
-                                                <input class="form-check-input" type="radio" name="b6" id="radioDanger1" value="1">
+                                                <input class="form-check-input" type="radio" name="b6" id="radioDanger1" value="1" required>
                                                 <label class="form-check-label" for="Danger">1
                                                 </label>
                                             </div>
@@ -960,7 +963,7 @@ Form Penilaian
                                     <ul class="list-unstyled mb-0">
                                         <li class="d-inline-block me-2 mb-1">
                                             <div class="form-check form-check-warning ">
-                                                <input class="form-check-input" type="radio" name="c6" id="radioDanger1" value="1">
+                                                <input class="form-check-input" type="radio" name="c6" id="radioDanger1" value="1" required>
                                                 <label class="form-check-label" for="Danger">1
                                                 </label>
                                             </div>
@@ -1008,7 +1011,7 @@ Form Penilaian
                                     <ul class="list-unstyled mb-0">
                                         <li class="d-inline-block me-2 mb-1">
                                             <div class="form-check form-check-warning ">
-                                                <input class="form-check-input" type="radio" name="aa7" id="radioDanger1" value="1">
+                                                <input class="form-check-input" type="radio" name="aa7" id="radioDanger1" value="1" required>
                                                 <label class="form-check-label" for="Danger">1
                                                 </label>
                                             </div>
@@ -1045,7 +1048,7 @@ Form Penilaian
                                     <ul class="list-unstyled mb-0">
                                         <li class="d-inline-block me-2 mb-1">
                                             <div class="form-check form-check-warning ">
-                                                <input class="form-check-input" type="radio" name="ab7" id="radioDanger1" value="1">
+                                                <input class="form-check-input" type="radio" name="ab7" id="radioDanger1" value="1" required>
                                                 <label class="form-check-label" for="Danger">1
                                                 </label>
                                             </div>
@@ -1082,7 +1085,7 @@ Form Penilaian
                                     <ul class="list-unstyled mb-0">
                                         <li class="d-inline-block me-2 mb-1">
                                             <div class="form-check form-check-warning ">
-                                                <input class="form-check-input" type="radio" name="ac7" id="radioDanger1" value="1">
+                                                <input class="form-check-input" type="radio" name="ac7" id="radioDanger1" value="1" required>
                                                 <label class="form-check-label" for="Danger">1
                                                 </label>
                                             </div>

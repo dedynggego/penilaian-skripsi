@@ -11,7 +11,7 @@ use function PHPUnit\Framework\returnValue;
 class DosenController extends Controller
 {
     public function index(){
-        $dosens = User::all();
+        $dosens = User::orderBy('name')->get();
         $user = Auth::user();
         return view('layout.dosen')->with([
             'dosens' => $dosens,

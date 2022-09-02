@@ -6,11 +6,11 @@
 
 @section('isi')
 <div class="card card-danger  col-5 m-auto">
-    <div class="card-header">
-        <h3><strong> Edit Data User/Dosen </strong></h3>
+    <div class="card-body">
+        <h3 style="color: black;">
+            <strong>Edit Data Dosen</strong>
+        </h3>
     </div>
-    <!-- /.card-header -->
-    <!-- form start -->
     <form action="{{url('/dosen/' . $dosen->id)}}" method="POST">
         @method('PUT')
         @csrf
@@ -57,13 +57,13 @@
                     <option selected disabled>Pilih satu</option>
                     <option value="{{$dosen->level}}" @if ($dosen->level == 1)
                         selected
-                    @endif>Admin</option>
+                        @endif>Admin</option>
                     <option value="{{$dosen->level}}" @if ($dosen->level == 2)
                         selected
-                    @endif>Dosen</option>
+                        @endif>Dosen</option>
                     <option value="{{$dosen->level}}" @if ($dosen->level == 3)
                         selected
-                    @endif>Mahasiswa</option>
+                        @endif>Mahasiswa</option>
                 </select>
             </div>
             <!-- /.card-body -->

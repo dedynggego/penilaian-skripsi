@@ -17,7 +17,7 @@
 
             <h6>Nama Lengkap</h6>
             <div class="form-group position-relative has-icon-right">
-                <input type="text" class="form-control" id="name" placeholder="Masukkan Nama" , name="name" required>
+                <input type="text" class="form-control" id="name" placeholder="Masukkan Nama" , name="name" required autocomplete="off" autofocus>
                 <div class="form-control-icon">
                     <i data-feather="user"></i>
                 </div>
@@ -26,7 +26,7 @@
 
             <h6>NIDN</h6>
             <div class="form-group position-relative has-icon-right">
-                <input type="text" class="form-control" id="nidn" placeholder="Masukkan NIDN" , name="nidn">
+                <input type="text" class="form-control" id="nidn" placeholder="Masukkan NIDN" , name="nidn" autocomplete="off">
                 <div class="form-control-icon">
                     <i data-feather="hash"></i>
                 </div>
@@ -35,7 +35,7 @@
 
             <h6>Email</h6>
             <div class="form-group position-relative has-icon-right">
-                <input type="email" class="form-control" id="email" placeholder="Masukkan Email" , name="email" required>
+                <input type="email" class="form-control" id="email" placeholder="Masukkan Email" , name="email" required autocomplete="off">
                 <div class="form-control-icon">
                     <i data-feather="mail"></i>
                 </div>
@@ -44,7 +44,7 @@
 
             <h6>Username</h6>
             <div class="form-group position-relative has-icon-right">
-                <input type="text" class="form-control" id="username" placeholder="Masukkan Username" , name="username" required>
+                <input type="text" class="form-control" id="username" placeholder="Masukkan Username" , name="username" required autocomplete="off">
                 <div class="form-control-icon">
                     <i data-feather="user-check"></i>
                 </div>

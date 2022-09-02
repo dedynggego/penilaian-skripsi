@@ -9,11 +9,6 @@ class LoginController extends Controller
 {
     public function index(){
         if(Auth::user()){
-            // if($user -> level == '1'){
-            //     return redirect()->intended('beranda');
-            // }elseif($user -> level == '2'){
-            //     return redirect() -> intended('dosen');
-            // }
             return redirect()->intended('home');
 
         }

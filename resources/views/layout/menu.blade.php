@@ -17,4 +17,10 @@
         Beri Nilai
     </a>
 </li>
+@else
+<li>
+<a href="{{url('dashboard')}}">
+        Lihat Nilai
+    </a>
+</li>
 @endif
