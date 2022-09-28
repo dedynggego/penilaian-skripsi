@@ -57,7 +57,7 @@
                     @foreach ($item->users as $i )
                     <tr>
                         <td style="color: black;">{{$i->name}}</td>
-                        <td style="color: black;">{{$i->pivot->nilai}}</td>
+                        <td style="color: black;">{{number_format($i->pivot->nilai, 2, '.', '')}}</td>
                         <td style="color: black;"></td>
                     </tr>
                     @endforeach

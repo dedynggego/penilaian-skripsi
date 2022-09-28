@@ -185,9 +185,9 @@ class SkripsiController extends Controller
             // }
             if ($status == 4) { //jika status == 4
                 $nilai_baru = $nilai_baru / 5; //Bagi dengan 5
-                if ($nilai_baru >= 80) { //Perbaiki grade nilai
+                if ($nilai_baru >= 90) { //Perbaiki grade nilai
                     $skripsi->nilai_huruf = 'A';
-                } elseif ($nilai_baru >= 70) {
+                } elseif ($nilai_baru >= 80) {
                     $skripsi->nilai_huruf = 'B';
                 } elseif ($nilai_baru >= 60) {
                     $skripsi->nilai_huruf = 'C';

@@ -78,7 +78,7 @@
     <table class="w-auto small">
         <thead>
             <tr>
-                <th style="width: 60%;"> Merauke ......................... 2022 <strong> <br>Ketua Sidang, <br> <br><br><br><br>(........................................................................) </strong></th>
+                <th style="width: 60%;"> Merauke ......................... 2022 <strong> <br>Ketua Jurusan, <br> <br><br><br><br>(........................................................................) </strong></th>
             </tr>
         </thead>
     </table>

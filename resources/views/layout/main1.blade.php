@@ -47,9 +47,9 @@
                                 <i data-feather="home" width="20"></i>
                                 <span>Dashboard</span>
                             </a>
-                        </li>                            
+                        </li>
                         @endif
-                        
+
 
 
 
@@ -97,6 +97,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav d-flex align-items-center navbar-light ms-auto">
+                        <li class="nav-item d-none d-lg-block"><a class="nav-link nav-link-expand"><i data-feather="maximize"></i></a></li>
                         <li class="dropdown">
                             <a href="#" data-bs-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                                 <div class="avatar me-1">
@@ -107,8 +108,8 @@
                             <div class="dropdown-menu dropdown-menu-end">
                                 <a class="dropdown-item" href="{{url('logout')}}"><i data-feather="log-out"></i> Logout</a>
                             </div>
-                           
-                            
+
+
                         </li>
                     </ul>
                 </div>
@@ -138,7 +139,7 @@
 
 
     <div class="modal fade text-left" id="default" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-        <div class="modal-dialog modal-lg role="document">
+        <div class="modal-dialog modal-lg role=" document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="myModalLabel1">Filter Tanggal</h5>
@@ -147,24 +148,24 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                        <div class="box-body">
-                            <div class="form-group">
-                                <label>Dari Tanggal</label>
-                                <input type="text" class="form-control datepicker" id="dari" placeholder="Dari" autocomplete="off" name="dari">
-                            </div>
-                            <div class="form-group">
-                                <label>Sampai Tanggal</label>
-                                <input type="text" name="sampai" class="form-control datepicker" id="sampai" placeholder="Sampai" autocomplete="off">
-                            </div>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label>Dari Tanggal</label>
+                            <input type="text" class="form-control datepicker" id="dari" placeholder="Dari" autocomplete="off" name="dari">
                         </div>
-                        <!-- /.box-body -->
+                        <div class="form-group">
+                            <label>Sampai Tanggal</label>
+                            <input type="text" name="sampai" class="form-control datepicker" id="sampai" placeholder="Sampai" autocomplete="off">
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
 
-                        <div class="box-footer">
-                            <a href="" onclick="this.href='/skripsi/cetak/'+document.getElementById('dari').value +'/' +document.getElementById('sampai').value" target="_blank", class="btn btn-info">
+                    <div class="box-footer">
+                        <a href="" onclick="this.href='/skripsi/cetak/'+document.getElementById('dari').value +'/' +document.getElementById('sampai').value" target="_blank" , class="btn btn-info">
                             Cetak <i data-feather="printer"></i>
                         </a>
-                        </div>
-                   
+                    </div>
+
                 </div>
             </div>
         </div>
